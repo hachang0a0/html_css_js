@@ -1,0 +1,102 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            display: inline-block;
+            width: 30%;
+        }
+        select{
+            width: 100%;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="divClassName"></div>
+    <div id="divName"></div>
+    <br/>
+    <br/>
+    <div id="info"></div>
+    <div id="info2"></div>
+
+    <script>
+        var students = [
+            { id: 1, name: 'tran van a', className: '.net' },
+            { id: 2, name: 'tran van b', className: '.net' },
+            { id: 3, name: 'tran van c', className: 'angular' },
+            { id: 4, name: 'tran van d', className: 'angular' },
+            { id: 5, name: 'tran van e', className: 'java' },
+            { id: 6, name: 'tran van f', className: 'java' },
+            { id: 7, name: 'tran van g', className: 'java' },
+            { id: 8, name: 'tran van h', className: 'test' },
+            { id: 9, name: 'tran van i', className: 'test' },
+            { id: 10, name: 'tran van j', className: 'test' }
+        ];
+
+        var divClassName = document.getElementById('divClassName');
+        var divName = document.getElementById('divName');
+        var divInfo = document.getElementById('info');
+        var divStudent = document.getElementById('info2');
+
+        var arrClassName = [];
+        for(x of students)
+        {
+            let i = true;
+            for(y of arrClassName)
+            {
+                if(x.className == y)
+                {
+                    i = false;
+                    break;
+                }
+            }
+            if(i)
+            {
+                arrClassName.push(x.className);
+            }
+        }
+
+        var className = "";
+        className += '<select id= "selectClassName" onclick = "initDivName()">';
+        for(x of arrClassName)
+        {
+            className += '<option value= "'+x+'">'+x+'</option><br/>';
+        }
+        className += '</select>';
+        divClassName.innerHTML = className;
+        var divSelectClassName = document.getElementById('selectClassName');
+        divInfo.innerHTML = divSelectClassName.value;
+        initDivName();
+
+        function initDivName(){
+            var temp =  divSelectClassName.value;
+            var name = "";
+            var arrName = [];
+            for(x of students)
+            {
+                if(x.className == temp)
+                {
+                    arrName.push(x.name);
+                }
+            }
+            name += '<select id= "selectName">';
+            for(x of arrName)
+            {
+                name += '<option value= "'+x+'">'+x+'</option><br/>';
+            }
+            name += '</select>';
+            divName.innerHTML = name;
+            divInfo.innerHTML = temp;
+        }
+
+    </script>
+</body>
+
+</html>
